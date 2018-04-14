@@ -19,6 +19,7 @@
 #include <iostream>
 #include "Polybius.h"
 #include "Exception.h"
+#include "ConvertString.h"
 
 std::string parse_str(std::string &input);
 
@@ -28,6 +29,7 @@ int main()
     for(;;) {
         std::cout << "Enter in \"E\" or \"D\" followed by a space and the string; enter in \"S\" to exit" << std::endl;
         std::getline(std::cin, input);
+        if((ConvertString::is_upper(input))) { ConvertString::to_lowercase(input); }
         try {
             if(!(input.length() < 2) && input.at(0) == 'e' && input.at(1) == ' ') {
                 Polybius obj(parse_str(input));
