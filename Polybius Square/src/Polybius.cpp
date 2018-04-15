@@ -28,14 +28,12 @@ Polybius & Polybius::encrypt() {
             temp += symbol_if(c);
         }
         else {
-            std::cout << "TEMP: " << temp << std::endl;
             throw Exception("Invalid input");
         }
     }
 
     str = temp;
     add_history("Encrypted: " + str);
-    std::string().swap(str);
     return *this;
 }
 
@@ -87,7 +85,6 @@ Polybius & Polybius::decrypt() {
 
     str = temp;
     add_history("Decrypted: " + str);
-    std::string().swap(str);
     return *this;
 }
 
