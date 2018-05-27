@@ -33,7 +33,7 @@ Polybius & Polybius::encrypt() {
     }
 
     str = temp;
-    add_history("Encrypted: " + str);
+    add_history("Encrypted: " + str + "; ");
     return *this;
 }
 
@@ -84,7 +84,7 @@ Polybius & Polybius::decrypt() {
     }
 
     str = temp;
-    add_history("Decrypted: " + str);
+    add_history("Decrypted: " + str + "; ");
     return *this;
 }
 
