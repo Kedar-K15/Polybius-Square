@@ -14,7 +14,6 @@ class Polybius
 {
     public:
         explicit Polybius(std::string str) : str(str) {}
-        explicit Polybius(const Polybius &p) : str(p.str), history(p.history) {}
 
         Polybius & encrypt();
         Polybius & decrypt();
@@ -22,19 +21,6 @@ class Polybius
         void show_history() const;
 
         friend std::ostream &operator<<(std::ostream& os, const Polybius &p);
-        Polybius &operator=(const Polybius &p) {
-            if(this != &p) {
-                str = p.str;
-                history = p.history;
-            }
-            return *this;
-        }
-        Polybius &operator=(const std::string &rhs) {
-            if(str != rhs) {
-                str = rhs;
-            }
-            return *this;
-        }
     private:
         std::string str;
         std::unordered_map<char, std::string> letters = {
