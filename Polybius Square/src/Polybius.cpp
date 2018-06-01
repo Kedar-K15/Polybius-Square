@@ -38,50 +38,38 @@ Polybius & Polybius::encrypt() {
 }
 
 Polybius & Polybius::decrypt() {
-    if(!(parse_decrypt(str))) {
-        throw Exception("Invalid input");
-    }
-
     std::string temp;
-    std::string two;
-    unsigned int count = 2;
-    int iter;
-    bool is_other;
-
+    int iter = 0;
     for(unsigned int i = 0; i < str.length(); i += iter) {
-        is_other = false;
-        for(unsigned int j = i; j < count; j++) {
-           if(std::isspace(str[i])) {
-                temp += " ";
-                std::string().swap(two);
-                is_other = true;
-                break;
-            }
-            if(symbol_if(str[i]) != "-1") {
-                temp += symbol_if(str[i]);
-                std::string().swap(two);
-                is_other = true;
-                break;
-            }
-            two += str.at(j);
-        }
-        if(is_other) {
-            iter = 1;
-            count += 1;
+    if(i+1 == str.length()) {
+        break;
+    }
+    else if(std::isspace(str.at(i))) {
+        temp += " ";
+        iter = 1;
+        continue;
+    }
+    else if(symbol_if(str.at(i)) != "-1") {
+        temp += symbol_if(str.at(i));
+        iter = 1;
+        continue;
+    }
+    else if(!(std::isspace(str.at(i+1)) && symbol_if(str.at(i+1)) != "-1")){
+        std::string both = std::string(1,str.at(i)) + std::string(1,str.at(i+1));
+        if(check_key(both) != '\0') {
+            temp += std::string(1,check_key(both));
         }
         else {
             iter = 2;
-            count += 2;
-            two.resize(2);
-            if(check_key(two) != '\0') {
-                temp += std::string(1,check_key(two));
-            }
-            else {
-                throw Exception("Invalid input");
-            }
-            std::string().swap(two);
+            continue;
         }
     }
+    else {
+        iter = 1;
+        continue;
+    }
+    iter = 2;
+  }
 
     str = temp;
     add_history("Decrypted: " + str + "; ");
