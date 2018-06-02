@@ -72,6 +72,10 @@ Polybius & Polybius::decrypt() {
        iter += 2;
     }
 
+    if(temp.empty()) {
+        throw Exception("Invalid input");
+    }
+
     str = temp;
     add_history("Decrypted: " + str + "; ");
     return *this;
