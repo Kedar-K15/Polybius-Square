@@ -114,7 +114,7 @@ std::string Polybius::symbol_if(const char &c) const {
     return "-1";
 }
 
-char Polybius::check_key(std::string &value) {
+char Polybius::check_key(const std::string &value) {
     for (search = letters.begin(); search != letters.end(); ++search) {
         if (search->second == value) {
             return search->first;
