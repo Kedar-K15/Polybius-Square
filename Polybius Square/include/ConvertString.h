@@ -10,7 +10,7 @@
 namespace ConvertString {
     std::string to_lowercase(std::string &input);
 
-    bool is_upper(std::string &input);
+    bool is_upper(const std::string &input);
 }
 
 #endif // CONVERTSTRING_H

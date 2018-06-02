@@ -14,6 +14,6 @@ std::string ConvertString::to_lowercase(std::string &input) {
     return input;
 }
 
-bool ConvertString::is_upper(std::string &input) {
+bool ConvertString::is_upper(const std::string &input) {
     return std::any_of(input.begin(), input.end(), &::isupper);
 }
