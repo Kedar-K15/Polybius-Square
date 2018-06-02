@@ -118,13 +118,3 @@ char Polybius::check_key(std::string &value) {
     }
     return '\0';
 }
-
-bool Polybius::parse_decrypt(std::string &value) {
-    value.erase(std::remove_if(value.begin(), value.end(), isspace), value.end());
-
-    if((value.length() % 2) == 0) {
-        return true;
-    }
-
-    return false;
-}

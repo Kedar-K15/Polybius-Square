@@ -39,7 +39,6 @@ class Polybius
         std::string get_back() const;
         std::string symbol_if(const char &c) const;
         char check_key(std::string &value);
-        bool parse_decrypt(std::string &value);
 };
 
 #endif // POLYBIUS_H
