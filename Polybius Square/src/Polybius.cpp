@@ -40,36 +40,37 @@ Polybius & Polybius::encrypt() {
 Polybius & Polybius::decrypt() {
     std::string temp;
     int iter = 0;
-    for(unsigned int i = 0; i < str.length(); i += iter) {
-    if(i+1 == str.length()) {
-        break;
-    }
-    else if(std::isspace(str.at(i))) {
-        temp += " ";
-        iter = 1;
-        continue;
-    }
-    else if(symbol_if(str.at(i)) != "-1") {
-        temp += symbol_if(str.at(i));
-        iter = 1;
-        continue;
-    }
-    else if(!(std::isspace(str.at(i+1)) && symbol_if(str.at(i+1)) != "-1")){
-        std::string both = std::string(1,str.at(i)) + std::string(1,str.at(i+1));
-        if(check_key(both) != '\0') {
-            temp += std::string(1,check_key(both));
+
+    while(iter < str.length()) {
+        if(iter+1 == str.length()) {
+            break;
         }
-        else {
-            iter = 2;
+        else if(std::isspace(str.at(iter))) {
+            temp += " ";
+            iter += 1;
             continue;
         }
+        else if(symbol_if(str.at(iter)) != "-1") {
+            temp += symbol_if(str.at(iter));
+            iter += 1;
+            continue;
+        }
+        else if(!(std::isspace(str.at(iter+1)) && symbol_if(str.at(iter+1)) != "-1")){
+            std::string both = std::string(1,str.at(iter)) + std::string(1,str.at(iter+1));
+            if(check_key(both) != '\0') {
+                temp += std::string(1,check_key(both));
+            }
+            else {
+                iter += 2;
+                continue;
+            }
+        }
+        else {
+           iter += 1;
+            continue;
+        }
+       iter += 2;
     }
-    else {
-        iter = 1;
-        continue;
-    }
-    iter = 2;
-  }
 
     str = temp;
     add_history("Decrypted: " + str + "; ");
