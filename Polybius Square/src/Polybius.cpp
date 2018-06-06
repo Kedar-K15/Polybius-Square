@@ -55,7 +55,7 @@ Polybius & Polybius::decrypt() {
             iter += 1;
             continue;
         }
-        else if(!(std::isspace(str.at(iter+1)) && symbol_if(str.at(iter+1)) != "-1")){
+        else if(!(std::isspace(str.at(iter+1))) && !(symbol_if(str.at(iter+1)) != "-1")){
             std::string both = std::string(1,str.at(iter)) + std::string(1,str.at(iter+1));
             if(check_key(both) != '\0') {
                 temp += std::string(1,check_key(both));
@@ -67,7 +67,7 @@ Polybius & Polybius::decrypt() {
         }
         else {
            iter += 1;
-            continue;
+           continue;
         }
        iter += 2;
     }
