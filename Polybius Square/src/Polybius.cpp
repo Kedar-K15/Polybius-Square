@@ -72,7 +72,7 @@ Polybius & Polybius::decrypt() {
        iter += 2;
     }
 
-    if(temp.empty()) {
+    if(temp.empty() || temp.find_first_not_of(' ') == std::string::npos) {
         throw Exception("Invalid input");
     }
 
