@@ -13,7 +13,8 @@
 class Polybius
 {
     public:
-        explicit Polybius(std::string str) : str(str) {}
+        Polybius() { str = ""; }
+        Polybius(std::string str) : str(str) {}
 
         Polybius & encrypt();
         Polybius & decrypt();
