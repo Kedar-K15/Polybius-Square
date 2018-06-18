@@ -27,30 +27,33 @@ int main()
 {
     std::string input;
     for(;;) {
-        std::cout << "Enter in \"E\" or \"D\" followed by a space and the string; enter in \"S\" to exit" << std::endl;
+        std::cout << "Enter in \"E\" to encrypt or \"D\" to decrypt followed by a space and the string\n";
+        std::cout << "Enter in \"S\" to exit" << std::endl;
+        std::cout << "Answer: ";
         std::getline(std::cin, input);
         if((ConvertString::is_upper(input))) { ConvertString::to_lowercase(input); }
         try {
             if(!(input.length() < 2) && input.at(0) == 'e' && input.at(1) == ' ') {
                 Polybius obj(parse_str(input));
                 obj.encrypt();
-                std::cout << obj << std::endl;
+                std::cout << obj << '\n';
             }
             else if(!(input.length() < 2) && input.at(0) == 'd' && input.at(1) == ' ') {
                 Polybius obj(parse_str(input));
                 obj.decrypt();
-                std::cout << obj << std::endl;
+                std::cout << obj << '\n';
             }
             else if(input == "s") {
                 break;
             }
             else {
-                std::cout << "Incorrect input. Try again: " << std::endl;
+                std::cout << "Incorrect input. Try again:\n";
             }
         }
         catch(const std::exception &e) {
-            std::cout << e.what() << std::endl;
+            std::cout << e.what()  << ", try again:\n";
         }
+        std::cout << std::endl;
     }
 }
 
