@@ -10,6 +10,7 @@
 #include <exception>
 #include <algorithm>
 #include <cctype>
+#include <fstream>
 #include "Polybius.h"
 #include "Exception.h"
 
@@ -86,6 +87,21 @@ std::string Polybius::get_string() const { return str; }
 void Polybius::show_history() const {
     for(auto &x : history) {
         std::cout << x << ' ';
+    }
+}
+
+void Polybius::read_from_file(std::ifstream &file) {
+    std::string line;
+    std::string temp;
+    if(file.is_open()) {
+        while(std::getline(file, line)) {
+            temp += line;
+        }
+        str = temp;
+        file.close();
+    }
+    else {
+        throw Exception("File does not exist.");
     }
 }
 

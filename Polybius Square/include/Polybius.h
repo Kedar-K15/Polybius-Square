@@ -20,6 +20,7 @@ class Polybius
         Polybius & decrypt();
         std::string get_string() const;
         void show_history() const;
+        void read_from_file(std::ifstream &file);
 
         friend std::ostream &operator<<(std::ostream& os, const Polybius &p);
     private:
