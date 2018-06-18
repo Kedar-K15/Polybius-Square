@@ -17,6 +17,7 @@
 **/
 
 #include <iostream>
+#include <ios>
 #include "Polybius.h"
 #include "Exception.h"
 #include "ConvertString.h"
@@ -25,6 +26,7 @@ std::string parse_str(std::string &input);
 
 int main()
 {
+    std::ios_base::sync_with_stdio(false);
     std::string input;
     for(;;) {
         std::cout << "Enter in \"E\" to encrypt or \"D\" to decrypt followed by a space and the string\n";
