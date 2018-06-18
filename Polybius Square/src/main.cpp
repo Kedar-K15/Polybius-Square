@@ -47,7 +47,7 @@ int main()
                 break;
             }
             else {
-                std::cout << "Incorrect input. Try again:\n";
+                std::cout << "Incorrect input, try again:\n";
             }
         }
         catch(const std::exception &e) {
