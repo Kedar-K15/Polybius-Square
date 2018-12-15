@@ -100,41 +100,34 @@ void Polybius::read_from_file(std::string &file_path) {
         }
         str = temp;
         file.close();
-     //   std::cout << "The file should be closed now" << std::endl;
     }
     else {
-        file.close();
         throw Exception("File does not exist");
     }
 }
 
 void Polybius::encrypt_file(std::string &file_path) {
     read_from_file(file_path);
-    std::ofstream file(file_path);
-    // if(file.is_open()) { std::cout << "Wait what it's open?" << std::endl; }
-   // std::cout << "So we have read from the file, now to encrypt function" << std::endl;
     encrypt();
-   // std::cout << "After incorrect input ?? " << std::endl;
+    std::ofstream file(file_path);
     if(file.is_open()) {
         file << str << '\n';
         file.close();
     }
     else {
-        file.close();
         throw Exception("File does not exist");
     }
 }
 
 void Polybius::decrypt_file(std::string &file_path) {
     read_from_file(file_path);
-    std::ofstream file(file_path);
     decrypt();
+    std::ofstream file(file_path);
     if(file.is_open()) {
         file << str << '\n';
         file.close();
     }
     else {
-        file.close();
         throw Exception("File does not exist");
     }
 }
