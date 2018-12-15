@@ -74,11 +74,13 @@ void file_options() {
         std::string input;
         std::cout << "Enter in \"Y\" to encrypt/decrypt an entire file or \"N\" to encrypt/decrypt the file in the console\n";
         std::cout << "Enter in \"M\" to return to the welcome screen" << std::endl;
+        std::cout << "Answer: ";
         std::getline(std::cin, input);
         if((ConvertString::is_upper(input))) { ConvertString::to_lowercase(input); }
         try {
             if(input == "y") {
                 std::cout << "Enter in \"E\" to encrypt or \"D\" to decrypt followed by a space and the file path\n";
+                std::cout << "Answer: ";
                 std::getline(std::cin, input);
                 if((ConvertString::is_upper(input))) { ConvertString::to_lowercase(input); }
 
@@ -100,6 +102,7 @@ void file_options() {
             }
             else if(input == "n") {
                 std::cout << "Enter in \"E\" to encrypt or \"D\" to decrypt followed by a space and the file path\n";
+                std::cout << "Answer: ";
                 std::getline(std::cin, input);
                 if((ConvertString::is_upper(input))) { ConvertString::to_lowercase(input); }
 
