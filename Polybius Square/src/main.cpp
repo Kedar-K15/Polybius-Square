@@ -91,13 +91,13 @@ void file_options() {
                     Polybius obj;
                     input = parse_str(input);
                     obj.encrypt_file(input);
-                    std::cout << obj << '\n';
+                    std::cout << obj << '\n' << '\n';
                 }
                 else if(!(input.length() < 2) && input.at(0) == 'd' && input.at(1) == ' ') {
                     Polybius obj;
                     input = parse_str(input);
                     obj.decrypt_file(input);
-                    std::cout << obj << '\n';
+                    std::cout << obj << '\n' << '\n';
                 }
                 else {
                     std::cout << "Incorrect input, try again:\n\n";
@@ -115,14 +115,14 @@ void file_options() {
                     input = parse_str(input);
                     obj.read_from_file(input);
                     obj.encrypt();
-                    std::cout << obj << '\n';
+                    std::cout << obj << '\n' << '\n';
                 }
                 else if(!(input.length() < 2) && input.at(0) == 'd' && input.at(1) == ' ') {
                     Polybius obj;
                     input = parse_str(input);
                     obj.read_from_file(input);
                     obj.decrypt();
-                    std::cout << obj << '\n';
+                    std::cout << obj << '\n' << '\n';
                 }
                 else {
                     std::cout << "Incorrect input, try again:\n\n";
@@ -154,12 +154,12 @@ void string_options() {
             if(!(input.length() < 2) && input.at(0) == 'e' && input.at(1) == ' ') {
                 Polybius obj(parse_str(input));
                 obj.encrypt();
-                std::cout << obj << '\n';
+                std::cout << obj << '\n' << '\n';
             }
             else if(!(input.length() < 2) && input.at(0) == 'd' && input.at(1) == ' ') {
                 Polybius obj(parse_str(input));
                 obj.decrypt();
-                std::cout << obj << '\n';
+                std::cout << obj << '\n' << '\n';
             }
             else if(input == "m") {
                 std::cout << std::endl;
