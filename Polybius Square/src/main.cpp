@@ -131,6 +131,7 @@ void file_options() {
             else if(input == "m") {
                 std::cout << std::endl;
                 welcome_screen();
+                break;
             }
             else {
                 std::cout << "Incorrect input, try again:\n\n";
@@ -163,6 +164,7 @@ void string_options() {
             else if(input == "m") {
                 std::cout << std::endl;
                 welcome_screen();
+                break;
             }
             else {
                 std::cout << "Incorrect input, try again:\n\n";
