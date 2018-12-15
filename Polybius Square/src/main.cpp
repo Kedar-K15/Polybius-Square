@@ -51,10 +51,12 @@ void welcome_screen() {
     for(;;) {
         if((ConvertString::is_upper(input))) { ConvertString::to_lowercase(input); }
         if(input == "f") {
+            std::cout << std::endl;
             file_options();
             break;
         }
         else if(input == "s") {
+            std::cout << std::endl;
             string_options();
             break;
         }
@@ -79,6 +81,7 @@ void file_options() {
         if((ConvertString::is_upper(input))) { ConvertString::to_lowercase(input); }
         try {
             if(input == "y") {
+                std::cout << '\n';
                 std::cout << "Enter in \"E\" to encrypt or \"D\" to decrypt followed by a space and the file path\n";
                 std::cout << "Answer: ";
                 std::getline(std::cin, input);
@@ -97,10 +100,11 @@ void file_options() {
                     std::cout << obj << '\n';
                 }
                 else {
-                    std::cout << "Incorrect input, try again:\n";
+                    std::cout << "Incorrect input, try again:\n\n";
                 }
             }
             else if(input == "n") {
+                std::cout << '\n';
                 std::cout << "Enter in \"E\" to encrypt or \"D\" to decrypt followed by a space and the file path\n";
                 std::cout << "Answer: ";
                 std::getline(std::cin, input);
@@ -121,17 +125,18 @@ void file_options() {
                     std::cout << obj << '\n';
                 }
                 else {
-                    std::cout << "Incorrect input, try again:\n";
+                    std::cout << "Incorrect input, try again:\n\n";
                 }
             }
             else if(input == "m") {
+                std::cout << std::endl;
                 welcome_screen();
             }
             else {
-                std::cout << "Incorrect input, try again:\n";
+                std::cout << "Incorrect input, try again:\n\n";
             }
         } catch(const std::exception &e) {
-            std::cout << e.what() << ", try again:\n";
+            std::cout << e.what() << ", try again:\n\n";
         }
     }
 }
@@ -156,14 +161,15 @@ void string_options() {
                 std::cout << obj << '\n';
             }
             else if(input == "m") {
+                std::cout << std::endl;
                 welcome_screen();
             }
             else {
-                std::cout << "Incorrect input, try again:\n";
+                std::cout << "Incorrect input, try again:\n\n";
             }
         }
         catch(const std::exception &e) {
-            std::cout << e.what()  << ", try again:\n";
+            std::cout << e.what()  << ", try again:\n\n";
         }
     }
 }
