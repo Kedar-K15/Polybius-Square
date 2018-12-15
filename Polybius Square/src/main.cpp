@@ -23,14 +23,121 @@
 #include "ConvertString.h"
 
 std::string parse_str(std::string &input);
-
+void welcome_screen();
+void file_options();
+void string_options();
 int main()
 {
     std::ios_base::sync_with_stdio(false);
+
+    welcome_screen();
+}
+
+std::string parse_str(std::string &input) {
+    std::string result;
+    for(unsigned int i = 2; i < input.length(); i++) {
+        result += input[i];
+    }
+    return result;
+}
+
+void welcome_screen() {
     std::string input;
+    std::cout << "Welcome to the Polybius Square encryptor/decryptor!\n";
+    std::cout << "Enter in \"F\" to encrypt/decrypt with files or \"S\" to use strings\n";
+    std::cout << "Enter in \"E\" to exit" << std::endl;
+    std::cout << "Answer: ";
+    std::getline(std::cin, input);
     for(;;) {
+        if((ConvertString::is_upper(input))) { ConvertString::to_lowercase(input); }
+        if(input == "f") {
+            file_options();
+            break;
+        }
+        else if(input == "s") {
+            string_options();
+            break;
+        }
+        else if(input == "e") {
+            break;
+        }
+        else {
+            std::cout << "Incorrect input, try again:\n";
+        }
+
+        std::getline(std::cin, input);
+    }
+}
+
+void file_options() {
+    for(;;) {
+        std::string input;
+        std::cout << "Enter in \"Y\" to encrypt/decrypt an entire file or \"N\" to encrypt/decrypt the file in the console\n";
+        std::cout << "Enter in \"M\" to return to the welcome screen" << std::endl;
+        std::getline(std::cin, input);
+        if((ConvertString::is_upper(input))) { ConvertString::to_lowercase(input); }
+        try {
+            if(input == "y") {
+                std::cout << "Enter in \"E\" to encrypt or \"D\" to decrypt followed by a space and the file path\n";
+                std::getline(std::cin, input);
+                if((ConvertString::is_upper(input))) { ConvertString::to_lowercase(input); }
+
+                if(!(input.length() < 2) && input.at(0) == 'e' && input.at(1) == ' ') {
+                    Polybius obj;
+                    input = parse_str(input);
+                    obj.encrypt_file(input);
+                    std::cout << obj << '\n';
+                }
+                else if(!(input.length() < 2) && input.at(0) == 'd' && input.at(1) == ' ') {
+                    Polybius obj;
+                    input = parse_str(input);
+                    obj.decrypt_file(input);
+                    std::cout << obj << '\n';
+                }
+                else {
+                    std::cout << "Incorrect input, try again:\n";
+                }
+            }
+            else if(input == "n") {
+                std::cout << "Enter in \"E\" to encrypt or \"D\" to decrypt followed by a space and the file path\n";
+                std::getline(std::cin, input);
+                if((ConvertString::is_upper(input))) { ConvertString::to_lowercase(input); }
+
+                if(!(input.length() < 2) && input.at(0) == 'e' && input.at(1) == ' ') {
+                    Polybius obj;
+                    input = parse_str(input);
+                    obj.read_from_file(input);
+                    obj.encrypt();
+                    std::cout << obj << '\n';
+                }
+                else if(!(input.length() < 2) && input.at(0) == 'd' && input.at(1) == ' ') {
+                    Polybius obj;
+                    input = parse_str(input);
+                    obj.read_from_file(input);
+                    obj.decrypt();
+                    std::cout << obj << '\n';
+                }
+                else {
+                    std::cout << "Incorrect input, try again:\n";
+                }
+            }
+            else if(input == "m") {
+                welcome_screen();
+            }
+            else {
+                std::cout << "Incorrect input, try again:\n";
+            }
+        } catch(const std::exception &e) {
+            std::cout << e.what() << ", try again:\n";
+        }
+    }
+}
+
+void string_options() {
+    for(;;) {
+        std::string input;
         std::cout << "Enter in \"E\" to encrypt or \"D\" to decrypt followed by a space and the string\n";
-        std::cout << "Enter in \"S\" to exit" << std::endl;
+        std::cout << "Enter in \"M\" to return to the welcome screen" << std::endl;
         std::cout << "Answer: ";
         std::getline(std::cin, input);
         if((ConvertString::is_upper(input))) { ConvertString::to_lowercase(input); }
@@ -45,8 +152,8 @@ int main()
                 obj.decrypt();
                 std::cout << obj << '\n';
             }
-            else if(input == "s") {
-                break;
+            else if(input == "m") {
+                welcome_screen();
             }
             else {
                 std::cout << "Incorrect input, try again:\n";
@@ -55,14 +162,5 @@ int main()
         catch(const std::exception &e) {
             std::cout << e.what()  << ", try again:\n";
         }
-        std::cout << std::endl;
     }
-}
-
-std::string parse_str(std::string &input) {
-    std::string result;
-    for(unsigned int i = 2; i < input.length(); i++) {
-        result += input[i];
-    }
-    return result;
 }
