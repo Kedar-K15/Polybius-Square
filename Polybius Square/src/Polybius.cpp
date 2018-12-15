@@ -32,6 +32,10 @@ Polybius & Polybius::encrypt() {
         }
     }
 
+    if(temp.empty() || temp.find_first_not_of(' ') == std::string::npos) {
+        throw Exception("Invalid input");
+    }
+
     str = temp;
     add_history("Encrypted: " + str + "; ");
     return *this;
