@@ -45,7 +45,7 @@ Polybius & Polybius::encrypt() {
 
 Polybius & Polybius::decrypt() {
     std::string temp;
-    int iter = 0;
+    unsigned int iter = 0;
 
     while(iter < str.length()) {
         if(iter+1 == str.length()) {
