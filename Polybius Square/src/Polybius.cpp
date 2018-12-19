@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <cctype>
 #include <fstream>
+#include <experimental/optional>
 #include "Polybius.h"
 #include "Exception.h"
 
@@ -25,8 +26,8 @@ Polybius & Polybius::encrypt() {
         else if(search != letters.end()) {
             temp += search->second;
         }
-        else if(symbol_if(c) != "-1") {
-            temp += symbol_if(c);
+        else if(symbol_if(c)) {
+            temp += *symbol_if(c);
         }
         else {
             throw Exception("Invalid input");
@@ -55,15 +56,15 @@ Polybius & Polybius::decrypt() {
             iter += 1;
             continue;
         }
-        else if(symbol_if(str.at(iter)) != "-1") {
-            temp += symbol_if(str.at(iter));
+        else if(symbol_if(str.at(iter))) {
+            temp += *symbol_if(str.at(iter));
             iter += 1;
             continue;
         }
-        else if(!(std::isspace(str.at(iter+1))) && !(symbol_if(str.at(iter+1)) != "-1")){
+        else if(!(std::isspace(str.at(iter+1))) && !(symbol_if(str.at(iter+1)))){
             std::string both = std::string(1,str.at(iter)) + std::string(1,str.at(iter+1));
-            if(check_key(both) != '\0') {
-                temp += std::string(1,check_key(both));
+            if(check_key(both)) {
+                temp += std::string(1,*check_key(both));
             }
             else {
                 iter += 2;
@@ -154,18 +155,18 @@ std::string Polybius::get_back() const {
   return history.back();
 }
 
-std::string Polybius::symbol_if(const char &c) const {
+std::experimental::optional<std::string> Polybius::symbol_if(const char &c) const {
     if (std::find(symbols.begin(), symbols.end(), std::string(1,c)) != symbols.end()) {
         return std::string(1,c);
     }
-    return "-1";
+    return { };
 }
 
-char Polybius::check_key(const std::string &value) {
+std::experimental::optional<char> Polybius::check_key(const std::string &value) {
     for (search = letters.begin(); search != letters.end(); ++search) {
         if (search->second == value) {
             return search->first;
         }
     }
-    return '\0';
+    return { };
 }

@@ -9,6 +9,7 @@
 
 #include <vector>
 #include <unordered_map>
+#include <experimental/optional>
 
 class Polybius
 {
@@ -41,8 +42,8 @@ class Polybius
 
         void add_history(const std::string &type);
         std::string get_back() const;
-        std::string symbol_if(const char &c) const;
-        char check_key(const std::string &value);
+        std::experimental::optional<std::string> symbol_if(const char &c) const;
+        std::experimental::optional<char> check_key(const std::string &value);
 };
 
 #endif // POLYBIUS_H
